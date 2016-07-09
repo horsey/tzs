@@ -1,0 +1,17 @@
+{
+  "name": "datetime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "moment-range": "^2.2.0",
+    "moment-timezone": "^0.5.4"
+  }
+}
