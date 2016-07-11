@@ -125,12 +125,10 @@ function transformAm(a, d) {
 
 
 
-date = moment("07-07-2016", "MM-DD-YYYY")
-dayAm = transformAm(am, date);
+startTime = moment("2016-07-07 00:00 +0530", "YYYY-MM-DD HH:mm Z")
+           .utcOffset(+330).format();
 
-startTime = moment("07-07-2016", "MM-DD-YYYY")
-    .utc()
-    .format();
+dayAm = transformAm(am, startTime);
 
 //Initialize the slot object 
 slot = {"start_time": startTime}
@@ -139,14 +137,13 @@ dayArray.push(slot);
 for(var i = 0; i < 96; i++) { 
     startTime =  moment(startTime)
 	.add(15, 'minutes')
-	.utc()
+	.utcOffset(+330)
 	.format();
     
     slot = {"start_time": startTime};
     dayArray.push(slot);
 }
 
-console.log(dayArray);
 var convertedArray = [];
 for(var i = 0; i < dayAm.length; i++) { 
     for(var j = 0; j < dayArray.length; j++) { 
@@ -158,3 +155,11 @@ for(var i = 0; i < dayAm.length; i++) {
 
 console.log(convertedArray);
 
+
+/* TODOs:
+   - Represent time in local time - for now +5:30 (1)
+   - Merge appointments
+   - Merge blocked dates
+   - Merge  availability matrix
+   - Merge location identifier
+*/
