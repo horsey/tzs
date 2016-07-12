@@ -1,80 +1,20 @@
-'use strict'; 
+'use strict';
 var moment = require('moment');
-             require('moment-range');
-             require('moment-timezone');
+	     require('moment-timezone');
+	     require('twix');
 
 var   _    = require('lodash');
 
-var am = [
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ],
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ], 
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ],
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ], 
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ], 
+var iter = moment("2016-07-07 00:00 +0530", "YYYY-MM-DD HH:mm Z")
+	   .twix("2016-07-07 23:59 +0530", "YYYY-MM-DD HH:mm Z")
+	   .iterate(15, 'minutes');
 
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ], 
-    [
-	{
-	    "start": "10:00",
-	    "end": "13:00"
-	},
-	{
-	    "start": "16:00",
-	    "end": "20:00"
-	}
-    ]
-];
+var slots = [];
+
+while (iter.hasNext()) {
+    slots.push(iter.next()
+	       .utcOffset(330)
+	       .format());
+}
+
+console.log(slots);
